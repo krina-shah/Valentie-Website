@@ -55,7 +55,7 @@
   <div class="card">
     <h1>Raj Chheda, Will you be my Valentine? ❤️</h1>
     <div class="btns">
-      <button class="yes" onclick="alert('Yay ! I love you')">Yes</button>
+      <button class="yes" onclick="">Yes</button>
       <button class="no" onclick="alert('No?? 😭 But I still love you!')">No</button>
     </div>
   </div>
@@ -69,13 +69,32 @@
 
       // If cursor is too close, move the button
       if (distX < 120 && distY < 80) {
-        const newX = Math.random() * (window.innerWidth - rect.width);
-        const newY = Math.random() * (window.innerHeight - rect.height);
+        const newX = Math.random() * (window.innerWidth - rect.width) + 50;
+        const newY = Math.random() * (window.innerHeight - rect.height) + 50;
         noBtn.style.left = newX + 'px';
         noBtn.style.top = newY + 'px';
       }
     });
-  </script>
+  // Confetti effect
+function launchConfetti() {
+  const duration = 1 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({ particleCount: 6, spread: 60 });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+}
+
+// Modify Yes button click
+const yesBtn = document.querySelector('.yes');
+yesBtn.onclick = () => {
+  const title = document.querySelector('h1');
+  title.textContent = 'Yay ! I love you ❤️';
+  launchConfetti();
+};
+
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
-
