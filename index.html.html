@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine?</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: pink;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    h1 {
+      color: #e91e63;
+      font-size: 2.5rem;
+    }
+    .btns {
+      margin-top: 25px;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      margin: 0 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .yes {
+      background: #e91e63;
+      color: white;
+    }
+    .no {
+      background: #f8bbd0;
+      color: #880e4f;
+    }
+      .no {
+      position: absolute;
+      background: #f8bbd0;
+      color: #880e4f;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Raj Chheda, Will you be my Valentine? ❤️</h1>
+    <div class="btns">
+      <button class="yes" onclick="alert('Yay ! I love you')">Yes</button>
+      <button class="no" onclick="alert('No?? 😭 But I still love you!')">No</button>
+    </div>
+  </div>
+  <script>
+    const noBtn = document.querySelector('.no');
+
+    document.addEventListener('mousemove', (e) => {
+      const rect = noBtn.getBoundingClientRect();
+      const distX = Math.abs(e.clientX - (rect.left + rect.width/2));
+      const distY = Math.abs(e.clientY - (rect.top + rect.height/2));
+
+      // If cursor is too close, move the button
+      if (distX < 120 && distY < 80) {
+        const newX = Math.random() * (window.innerWidth - rect.width);
+        const newY = Math.random() * (window.innerHeight - rect.height);
+        noBtn.style.left = newX + 'px';
+        noBtn.style.top = newY + 'px';
+      }
+    });
+  </script>
+</body>
+</html>
